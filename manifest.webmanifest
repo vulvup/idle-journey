@@ -1,0 +1,10 @@
+{
+  "name": "異界旅人：Idle Journey",
+  "short_name": "異界旅人",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111222",
+  "theme_color": "#17172b",
+  "lang": "zh-TW",
+  "description": "Anime 風格單人背景掛機 RPG"
+}

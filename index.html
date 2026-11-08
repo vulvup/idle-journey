@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17172b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="異界旅人">
+<link rel="manifest" href="manifest.webmanifest">
+<title>異界旅人：Idle Journey</title>
+<style>
+:root{--bg:#111222;--panel:#20213a;--panel2:#292b49;--gold:#f5cc78;--pink:#f28cba;--cyan:#86d9e8;--text:#f7f2ff;--muted:#aaa9c4;--line:#ffffff18}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#38345e 0,#17182d 45%,#10111f 100%);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;min-height:100vh}
+.app{max-width:520px;margin:auto;min-height:100vh;padding:env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 3px 12px}.brand{font-weight:900;letter-spacing:.08em}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.18em;font-weight:600}.chapter{font-size:11px;color:var(--gold);border:1px solid #f5cc7850;border-radius:20px;padding:6px 10px}
+.hero{position:relative;height:310px;border:1px solid #ffffff22;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#536c91 0%,#a7a2c1 42%,#536c67 43%,#243b43 100%);box-shadow:0 18px 45px #0006}
+.sun{position:absolute;width:100px;height:100px;border-radius:50%;background:#ffe7bb;top:30px;right:48px;box-shadow:0 0 55px #ffe7bb99}
+.mountain{position:absolute;bottom:85px;width:0;height:0;border-left:150px solid transparent;border-right:150px solid transparent;border-bottom:150px solid #45536b;opacity:.8}.m1{left:-65px}.m2{right:-80px;border-bottom-color:#394b60}
+.forest{position:absolute;bottom:0;width:100%;height:125px;background:linear-gradient(180deg,#365c54,#183a39)}
+.tree{position:absolute;bottom:80px;width:0;height:0;border-left:35px solid transparent;border-right:35px solid transparent;border-bottom:110px solid #244a48;filter:drop-shadow(0 5px 0 #1c3d3c)}.t1{left:15px}.t2{right:20px;transform:scale(1.25)}.t3{left:90px;transform:scale(.7)}
+.scene-label{position:absolute;top:14px;left:16px;font-size:11px;letter-spacing:.12em;color:#fff;text-shadow:0 2px 5px #0008}
+.hero-character{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:142px;height:190px;filter:drop-shadow(0 8px 7px #10132488);animation:bob 2.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-7px)}}
+.hero-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:12px;text-shadow:0 2px 5px #000}
+.float{position:absolute;right:17%;top:46%;font-size:12px;color:#fff2b6;animation:rise 2.4s infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(15px)}30%{opacity:1}100%{opacity:0;transform:translateY(-35px)}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.stat{background:#20213add;border:1px solid var(--line);border-radius:14px;padding:10px 11px}.stat span{display:block;color:var(--muted);font-size:10px}.stat b{font-size:17px}
+.panel{background:linear-gradient(145deg,#252642,#1c1d34);border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:11px}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-title{font-size:13px;font-weight:800}.sub{font-size:11px;color:var(--muted)}
+.bar{height:9px;background:#111326;border-radius:20px;overflow:hidden;margin-top:9px}.fill{height:100%;width:0;background:linear-gradient(90deg,#f28cba,#ffd18b);border-radius:20px;transition:width .3s}
+.action{border:0;border-radius:13px;padding:12px 14px;font-weight:800;color:#242039;background:linear-gradient(135deg,#ffdb98,#f2a7c8);font-size:13px;cursor:pointer}.action:disabled{opacity:.45}.action.secondary{background:#393b5c;color:#f6f1ff;border:1px solid #ffffff1c}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}.tab{background:#22233b;border:1px solid var(--line);color:var(--muted);padding:10px 4px;border-radius:12px;font-size:12px}.tab.active{color:var(--gold);border-color:#f5cc7866;background:#38334c}
+.log{font-size:11px;line-height:1.8;color:#c8c6dc;max-height:95px;overflow:auto}.loot{color:var(--gold)}.upgrade-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}.upgrade-line:last-child{border:0}.upgrade-line b{font-size:12px}.upgrade-line small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+footer{text-align:center;color:#777791;font-size:10px;padding:18px 0 5px}
+@media(min-width:520px){.app{padding-top:12px}.hero{height:340px}}
+</style>
+</head>
+<body><main class="app">
+<header><div class="brand">異界旅人 <small>IDLE JOURNEY · CHAPTER 01</small></div><div class="chapter">✦ 初始森林</div></header>
+<section class="hero" aria-label="初始森林冒險場景">
+ <div class="sun"></div><div class="mountain m1"></div><div class="mountain m2"></div><div class="forest"></div><div class="tree t1"></div><div class="tree t2"></div><div class="tree t3"></div>
+ <div class="scene-label">THE BEGINNING WOODS</div>
+ <svg class="hero-character" viewBox="0 0 150 205" xmlns="http://www.w3.org/2000/svg" aria-label="動漫風格冒險者">
+  <ellipse cx="75" cy="193" rx="36" ry="7" fill="#111827" opacity=".35"/>
+  <!-- cloak -->
+  <path d="M47 91 Q23 119 34 183 L116 183 Q127 119 103 91 L93 83 L57 83Z" fill="#29304d" stroke="#161d34" stroke-width="4"/>
+  <path d="M48 105 Q38 143 49 178 L65 178 L62 111Z" fill="#485274"/>
+  <path d="M102 105 Q112 143 101 178 L85 178 L88 111Z" fill="#384361"/>
+  <!-- legs and boots -->
+  <path d="M56 164 L55 190 L72 190 L76 160 M79 160 L84 190 L101 190 L94 162" fill="#24263d" stroke="#15182b" stroke-width="4"/>
+  <path d="M52 185 L73 185 L75 198 L46 198 Q43 192 52 185 M84 185 L104 185 L111 198 L82 198Z" fill="#171b2e"/>
+  <!-- arms -->
+  <path d="M48 99 Q27 113 30 146 L43 150 L60 116 M102 99 Q123 113 120 146 L107 150 L90 116" fill="#d9b9bb" stroke="#24263d" stroke-width="5"/>
+  <!-- torso -->
+  <path d="M52 88 L98 88 L107 145 L75 162 L43 145Z" fill="#e8e2ed" stroke="#24263d" stroke-width="4"/>
+  <path d="M52 91 L75 110 L98 91 L91 145 L75 155 L59 145Z" fill="#59698b"/>
+  <path d="M75 110 L75 153" stroke="#f3d18c" stroke-width="3"/>
+  <!-- neck -->
+  <rect x="66" y="72" width="18" height="22" rx="7" fill="#e7bfc0"/>
+  <!-- hair back -->
+  <path d="M42 48 Q39 9 76 9 Q116 8 111 56 L103 91 L45 86Z" fill="#d9e2ef" stroke="#303650" stroke-width="4"/>
+  <!-- face -->
+  <ellipse cx="76" cy="52" rx="30" ry="35" fill="#f2d1c9" stroke="#303650" stroke-width="3"/>
+  <!-- fringe -->
+  <path d="M46 48 Q41 13 76 13 Q111 12 108 47 Q94 32 85 31 Q78 48 63 51 Q56 45 46 48Z" fill="#e4edf6" stroke="#303650" stroke-width="3"/>
+  <path d="M55 43 Q48 58 53 69 Q42 64 43 50Z M83 30 Q101 34 106 53 L98 48 Q94 59 88 62Z" fill="#c4d2e4"/>
+  <!-- eyes -->
+  <ellipse cx="64" cy="58" rx="4" ry="6" fill="#526f9d"/><ellipse cx="88" cy="58" rx="4" ry="6" fill="#526f9d"/>
+  <circle cx="65" cy="56" r="1.5" fill="white"/><circle cx="89" cy="56" r="1.5" fill="white"/>
+  <path d="M70 76 Q76 80 82 76" fill="none" stroke="#b87580" stroke-width="2" stroke-linecap="round"/>
+  <!-- scarf -->
+  <path d="M58 85 Q75 97 94 84 L101 99 Q77 112 51 98Z" fill="#d98eb0" stroke="#303650" stroke-width="3"/>
+  <path d="M91 95 L105 127 L93 132 L82 103" fill="#d98eb0" stroke="#303650" stroke-width="3"/>
+  <!-- belt -->
+  <path d="M47 143 Q75 154 103 143" fill="none" stroke="#d9b879" stroke-width="5"/>
+  <rect x="70" y="143" width="11" height="10" rx="2" fill="#f2d18a"/>
+ </svg>
+ <div class="float">✦ +EXP</div><div class="hero-caption">旅人・亞倫　正在探索森林……</div>
+</section>
+<section class="stats">
+ <div class="stat"><span>等級 LEVEL</span><b id="level">Lv. 1</b></div>
+ <div class="stat"><span>金幣 GOLD</span><b id="gold">0</b></div>
+ <div class="stat"><span>戰鬥力 POWER</span><b id="power">10</b></div>
+</section>
+<section class="panel">
+ <div class="row"><div class="section-title">✧ 冒險者成長</div><div class="sub" id="xpText">0 / 100 EXP</div></div>
+ <div class="bar"><div class="fill" id="xpBar"></div></div>
+ <div class="row" style="margin-top:13px"><div><div class="section-title">森林探索進度</div><div class="sub" id="battleText">已擊敗 0 隻森林史萊姆</div></div><div style="font-size:24px">🌲</div></div>
+ <div class="actions"><button class="action" id="upgradeBtn">提升攻擊力 · 30 G</button><button class="action secondary" id="claimBtn">掛機收益說明</button></div>
+</section>
+<section class="panel">
+ <div class="row"><div class="section-title">⚔️ 冒險紀錄</div><div class="sub" id="status">自動探索中</div></div>
+ <div class="log" id="log" style="margin-top:8px">亞倫踏入了初始森林。新的旅程開始了！</div>
+</section>
+<section class="panel">
+ <div class="row"><div class="section-title">🎒 旅人資訊</div><div class="sub">初始裝備</div></div>
+ <div class="upgrade-line"><div>🗡️ <b>旅行者短劍</b><small>攻擊力 +10（基礎武器）</small></div><span class="sub">普通</span></div>
+ <div class="upgrade-line"><div>🧥 <b>森林旅衣</b><small>防禦力 +2（基礎防具）</small></div><span class="sub">普通</span></div>
+</section>
+<footer>異界旅人 v0.1 · 進度保存在這台裝置的瀏覽器中</footer>
+</main>
+<script>
+const KEY="idleJourneySaveV1";
+const fresh=()=>({level:1,xp:0,gold:0,power:10,kills:0,last:Date.now(),claimedAt:0});
+let s;
+try{s={...fresh(),...JSON.parse(localStorage.getItem(KEY)||"{}")}}catch(e){s=fresh()}
+let logs=[];
+function need(){return 100+(s.level-1)*35}
+function save(){s.last=Date.now();localStorage.setItem(KEY,JSON.stringify(s))}
+function addLog(t){logs.unshift(t);logs=logs.slice(0,5);document.getElementById("log").innerHTML=logs.map(x=>`<div>${x}</div>`).join("")}
+function gain(n){s.xp+=n;while(s.xp>=need()){s.xp-=need();s.level++;s.power+=2;addLog(`✨ 升級了！亞倫達到 Lv.${s.level}，攻擊力 +2`)}}
+function render(){
+ document.getElementById("level").textContent="Lv. "+s.level;
+ document.getElementById("gold").textContent=Math.floor(s.gold).toLocaleString();
+ document.getElementById("power").textContent=s.power;
+ document.getElementById("xpText").textContent=`${Math.floor(s.xp)} / ${need()} EXP`;
+ document.getElementById("xpBar").style.width=Math.min(100,s.xp/need()*100)+"%";
+ document.getElementById("battleText").textContent=`已擊敗 ${s.kills} 隻森林史萊姆`;
+ document.getElementById("upgradeBtn").textContent=`提升攻擊力 · ${30+s.power*3} G`;
+ document.getElementById("upgradeBtn").disabled=s.gold<30+s.power*3;
+ save();
+}
+function battle(){s.kills++;s.gold+=5+Math.floor(s.level/2);gain(12+Math.floor(s.power/5));if(s.kills%5===0)addLog(`⚔️ 擊敗森林史萊姆！獲得金幣與經驗`);render()}
+function offline(){
+ const now=Date.now(), elapsed=Math.max(0,now-(s.last||now)), seconds=Math.min(elapsed/1000,8*3600);
+ const count=Math.floor(seconds/5);
+ if(count>0){const coins=count*(5+Math.floor(s.level/2));const xp=count*(12+Math.floor(s.power/5));s.gold+=coins;gain(xp);s.kills+=count;addLog(`🌙 歡迎回來！離線 ${format(seconds)}，獲得 ${coins} 金幣、${xp} EXP`);render()}
+}
+function format(sec){let h=Math.floor(sec/3600),m=Math.floor(sec%3600/60);return h?`${h} 小時 ${m} 分鐘`:`${m} 分鐘`}
+document.getElementById("upgradeBtn").addEventListener("click",()=>{const cost=30+s.power*3;if(s.gold>=cost){s.gold-=cost;s.power+=3;addLog("🗡️ 強化成功！攻擊力 +3");render()}});
+document.getElementById("claimBtn").addEventListener("click",()=>{addLog("🌙 離線收益會在你重新打開遊戲時自動計算並加入背包，最多累積 8 小時。");});
+offline();render();setInterval(battle,5000);
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"){offline();render()}else save()});
+window.addEventListener("pagehide",save);
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+</script>
+</body></html>
