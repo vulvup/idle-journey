@@ -3,8 +3,8 @@
   "short_name": "異界旅人",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#101629",
-  "theme_color": "#101629",
+  "background_color": "#09111f",
+  "theme_color": "#10182b",
   "orientation": "portrait",
   "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }

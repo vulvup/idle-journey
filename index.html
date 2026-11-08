@@ -3,62 +3,127 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101629">
-<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#10182b">
 <title>異界旅人：Idle Journey</title>
+<link rel="manifest" href="manifest.webmanifest">
 <style>
-:root{--gold:#f3ca78;--ink:#101629;--panel:rgba(13,20,38,.88);--line:rgba(238,205,133,.28);--muted:#aeb8cf}
-*{box-sizing:border-box}body{margin:0;background:#090f1d;color:#f7f1e5;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}
-.app{width:min(100%,520px);min-height:100dvh;margin:auto;background:linear-gradient(180deg,#17233a,#0b1222 70%);display:flex;flex-direction:column;overflow:hidden;position:relative}
-header{padding:calc(12px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,10,22,.45);border-bottom:1px solid var(--line)}
-.brand{font-weight:800;letter-spacing:.08em;color:var(--gold)}.chapter{font-size:12px;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 12px}
-.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}.stat small{display:block;color:var(--muted);font-size:11px}.stat b{font-size:17px;color:#fff0c7}
-.scene{margin:0 12px;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;height:clamp(330px,49vh,490px);background:linear-gradient(#243b5a 0%,#47647a 40%,#263e43 72%,#172b2a 100%)}
-.moon{position:absolute;width:64px;height:64px;border-radius:50%;background:#f8e6b6;right:13%;top:12%;box-shadow:0 0 35px #f8e6b677}
-.fog{position:absolute;inset:45% -10% 0;background:linear-gradient(180deg,transparent,rgba(177,207,190,.12),rgba(8,19,25,.6))}
-.mountain{position:absolute;bottom:25%;width:0;height:0;border-left:160px solid transparent;border-right:160px solid transparent;border-bottom:190px solid #263d4b;opacity:.9}
-.m1{left:-100px}.m2{right:-120px;border-bottom-color:#1c3341;transform:scale(1.15)}
-.tree{position:absolute;bottom:0;width:0;height:0;border-left:44px solid transparent;border-right:44px solid transparent;border-bottom:180px solid #102b2a;filter:drop-shadow(0 8px 0 #0c2022)}
-.t1{left:2%;transform:scale(1.2)}.t2{right:1%;transform:scale(1.45)}.t3{left:23%;transform:scale(.8);opacity:.85}
-.path{position:absolute;bottom:-8%;left:30%;width:45%;height:55%;background:linear-gradient(90deg,#80694c,#b49a6b,#66563f);clip-path:polygon(43% 0,58% 0,100% 100%,0 100%);opacity:.8}
-.hero{position:absolute;bottom:13%;left:50%;transform:translateX(-50%);width:86px;height:170px;filter:drop-shadow(0 12px 10px #0009)}
-.hero .cloak{position:absolute;bottom:0;left:9px;width:68px;height:112px;background:linear-gradient(110deg,#28344c,#101827);clip-path:polygon(24% 0,76% 0,100% 100%,0 100%);border-bottom:4px solid #c59b57}
-.hero .head{position:absolute;top:3px;left:27px;width:33px;height:38px;border-radius:45% 45% 40% 40%;background:#f0c7a4;z-index:2}
-.hero .hair{position:absolute;top:-3px;left:23px;width:42px;height:28px;background:#202337;border-radius:55% 55% 20% 20%;z-index:3}
-.hero .sword{position:absolute;right:0;top:52px;width:7px;height:100px;background:linear-gradient(90deg,#d9e6ef,#718da3);transform:rotate(-22deg);border-radius:5px;box-shadow:0 0 8px #c8eaff}
-.enemy{position:absolute;bottom:17%;right:17%;font-size:58px;filter:drop-shadow(0 8px 8px #0009);animation:bob 2.4s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(-8px)}}.scene-label{position:absolute;top:12px;left:12px;background:#081323b8;border:1px solid var(--line);border-radius:20px;padding:6px 10px;font-size:12px}
-.battle{position:absolute;bottom:12px;left:12px;right:12px;background:#091323c9;border:1px solid var(--line);border-radius:12px;padding:9px 11px}
-.battle-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}.bar{height:7px;background:#3b2630;border-radius:9px;overflow:hidden}.bar i{display:block;width:72%;height:100%;background:linear-gradient(90deg,#e36d64,#f5b16d)}
-.hero-status{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.meter{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px}.meter label{font-size:11px;color:var(--muted)}.meter strong{display:block;margin-top:3px;font-size:14px}
-.actions{padding:0 12px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-button{border:1px solid var(--line);background:linear-gradient(180deg,#34435d,#1b2941);color:#fff4dc;border-radius:12px;padding:12px;font-weight:700;font-size:14px}
-button.primary{background:linear-gradient(180deg,#c69a53,#88602e);color:#171321;border:0}
-.log{margin:0 12px 12px;padding:10px 12px;background:#0b1424;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:12px;min-height:48px}
-footer{margin-top:auto;text-align:center;padding:8px 12px calc(10px + env(safe-area-inset-bottom));color:#71809a;font-size:10px}
+:root{color-scheme:dark;--gold:#f7cf79;--panel:rgba(10,18,34,.78);--line:rgba(190,211,255,.18)}
+*{box-sizing:border-box}body{margin:0;background:#09111f;color:#f5f1e9;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;min-height:100vh}
+.app{width:min(100%,560px);margin:auto;padding:env(safe-area-inset-top) 14px calc(18px + env(safe-area-inset-bottom));}
+header{display:flex;justify-content:space-between;align-items:center;padding:13px 2px 10px}
+.brand{font-weight:900;letter-spacing:.06em}.version{font-size:11px;color:#a9b8d2;border:1px solid var(--line);border-radius:20px;padding:4px 8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px}
+.stat small{display:block;color:#aab8d0;font-size:11px}.stat strong{font-size:17px;color:#fff}
+.scene{position:relative;height:390px;margin:12px 0 10px;overflow:hidden;border-radius:20px;border:1px solid rgba(182,204,255,.2);background:linear-gradient(#111c39 0%,#26345a 44%,#182b38 72%,#101c27 100%);isolation:isolate}
+.moon{position:absolute;width:78px;height:78px;border-radius:50%;background:#f5e9c8;right:17%;top:40px;box-shadow:0 0 35px 10px rgba(240,224,177,.18)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1.5px),radial-gradient(#b8d6ff 1px,transparent 1.5px);background-size:61px 58px,89px 83px;background-position:8px 10px,30px 27px;opacity:.55}
+.mountain{position:absolute;bottom:95px;width:130%;height:160px;left:-15%;background:#1a2942;clip-path:polygon(0 100%,0 55%,14% 30%,25% 55%,39% 12%,55% 56%,68% 25%,83% 60%,100% 35%,100% 100%)}
+.forest{position:absolute;bottom:0;width:100%;height:150px;background:linear-gradient(transparent,#0b1920 45%);clip-path:polygon(0 100%,0 48%,8% 15%,15% 65%,24% 5%,32% 64%,43% 12%,51% 65%,61% 8%,70% 62%,80% 18%,90% 62%,100% 10%,100% 100%)}
+.ground{position:absolute;bottom:0;width:100%;height:84px;background:linear-gradient(#213a38,#101e25)}
+.scene-label{position:absolute;top:13px;left:14px;font-size:12px;color:#d9e4f7;text-shadow:0 1px 5px #000}
+.actor{position:absolute;bottom:42px;width:120px;height:190px;filter:drop-shadow(0 12px 7px rgba(0,0,0,.35))}
+.hero{left:23%;animation:breathe 2.3s ease-in-out infinite}
+.wolf{right:17%;width:125px;height:125px;bottom:50px;transform-origin:50% 80%;animation:wolfBreath 1.9s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wolfBreath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.015)}}
+.hero.attack{animation:slash .48s ease-in-out}
+@keyframes slash{0%{transform:translateX(0) rotate(0)}35%{transform:translateX(25px) rotate(-12deg)}70%{transform:translateX(8px) rotate(8deg)}100%{transform:translateX(0) rotate(0)}}
+.hero.hit{animation:heroHit .38s ease}
+@keyframes heroHit{0%,100%{filter:drop-shadow(0 12px 7px rgba(0,0,0,.35))}25%,65%{filter:drop-shadow(0 0 13px #ff6b76) brightness(1.8);transform:translateX(-7px)}}
+.wolf.hit{animation:wolfHit .3s ease}
+@keyframes wolfHit{0%,100%{filter:drop-shadow(0 12px 7px rgba(0,0,0,.35))}50%{filter:drop-shadow(0 0 18px #ffd16d) brightness(1.8);transform:translateX(8px)}}
+.slashfx{position:absolute;left:45%;bottom:120px;width:95px;height:55px;opacity:0;pointer-events:none;border-top:5px solid #fff1b6;border-radius:50%;transform:rotate(-28deg);filter:drop-shadow(0 0 8px #ffcf67)}
+.slashfx.show{animation:fx .42s ease-out}
+@keyframes fx{0%{opacity:0;transform:translate(-10px,12px) rotate(-45deg) scale(.5)}35%{opacity:1}100%{opacity:0;transform:translate(30px,-18px) rotate(-15deg) scale(1.3)}}
+.float{position:absolute;left:56%;bottom:175px;font-weight:900;color:#ffe6a2;text-shadow:0 2px 5px #000;opacity:0}
+.float.show{animation:floatup .8s ease-out}
+@keyframes floatup{0%{opacity:0;transform:translateY(8px)}20%{opacity:1}100%{opacity:0;transform:translateY(-35px)}}
+.hpwrap{position:absolute;right:12px;top:14px;width:100px;font-size:10px;text-align:right;color:#fff}
+.bar{height:7px;background:#344052;border-radius:9px;overflow:hidden;margin-top:4px}.bar span{display:block;height:100%;background:linear-gradient(90deg,#e85d67,#ffb078);width:100%;transition:width .25s}
+.progress{height:8px;background:#26364a;border-radius:8px;overflow:hidden;margin-top:7px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#4cc7ad,#a7e5a8);width:0}
+.panel{margin-top:10px}.panel h3{font-size:14px;margin:0 0 8px;color:var(--gold)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:13px}.muted{color:#aab8d0;font-size:11px}
+button{border:0;border-radius:12px;padding:12px 14px;background:linear-gradient(135deg,#f3ce82,#d99d4e);color:#2b1d0c;font-weight:900;font-size:14px;width:100%;margin-top:10px}
+.log{height:64px;overflow:auto;font-size:11px;line-height:1.6;color:#c2cee0}
+@media(max-width:380px){.scene{height:350px}.actor{transform:scale(.9);transform-origin:bottom center}.hero{left:17%}.wolf{right:10%}.stat strong{font-size:15px}}
 </style>
 </head>
-<body><main class="app">
-<header><div><div class="brand">異界旅人</div><div class="chapter">IDLE JOURNEY · 第一章：月影森林</div></div><div class="chapter">v0.2 prototype</div></header>
-<section class="stats"><div class="stat"><small>旅人等級</small><b id="level">Lv. 1</b></div><div class="stat"><small>持有金幣</small><b id="gold">0</b></div><div class="stat"><small>探索時間</small><b id="time">00:00</b></div></section>
-<section class="scene" aria-label="月影森林探索場景"><div class="moon"></div><div class="mountain m1"></div><div class="mountain m2"></div><div class="fog"></div><div class="path"></div><div class="tree t1"></div><div class="tree t2"></div><div class="tree t3"></div><div class="scene-label">🌙 月影森林・安全區域外</div><div class="hero"><div class="hair"></div><div class="head"></div><div class="cloak"></div><div class="sword"></div></div><div class="enemy">🐺</div><div class="battle"><div class="battle-top"><span>🌑 森林魔狼</span><span id="enemyhp">生命 72%</span></div><div class="bar"><i id="hpbar"></i></div></div></section>
-<section class="hero-status"><div class="meter"><label>經驗值</label><strong id="xp">0 / 100</strong><div class="bar"><i id="xpbar" style="width:0%;background:#75c9ad"></i></div></div><div class="meter"><label>戰鬥狀態</label><strong id="state">自動探索中</strong></div></section>
-<section class="actions"><button class="primary" id="upgrade">⚔️ 強化攻擊（30 金幣）</button><button id="collect">🎁 領取離線收益</button></section>
-<div class="log" id="log">旅人踏入月影森林。冒險即將開始……</div>
-<footer>異界旅人：Idle Journey · 手機直向優先 · 進度儲存於本機瀏覽器</footer>
-</main>
+<body>
+<div class="app">
+<header><div class="brand">異界旅人 <span class="muted">IDLE JOURNEY</span></div><div class="version">v0.3 動作測試版</div></header>
+<section class="stats">
+ <div class="stat"><small>等級</small><strong id="level">Lv. 1</strong></div>
+ <div class="stat"><small>金幣</small><strong id="gold">0</strong></div>
+ <div class="stat"><small>攻擊力</small><strong id="atk">8</strong></div>
+</section>
+<section class="scene" aria-label="月光森林戰鬥場景">
+ <div class="stars"></div><div class="moon"></div><div class="mountain"></div><div class="forest"></div><div class="ground"></div>
+ <div class="scene-label">探索中 · 月光森林</div>
+ <div class="hpwrap">森林狼 HP <span id="enemyHpText">40 / 40</span><div class="bar"><span id="enemyHpBar"></span></div></div>
+ <svg id="hero" class="actor hero" viewBox="0 0 120 190" role="img" aria-label="持劍冒險者">
+  <ellipse cx="60" cy="181" rx="34" ry="7" fill="#07121b" opacity=".6"/>
+  <path d="M39 68 Q17 82 24 143 L42 150 L55 91Z" fill="#263c68"/><path d="M77 68 Q102 80 94 145 L76 151 L65 91Z" fill="#1b2c51"/>
+  <path d="M40 70 Q60 55 80 70 L83 130 Q60 143 37 130Z" fill="#d7d9e2"/><path d="M42 74 L60 88 L78 73 L74 132 L46 132Z" fill="#334d77"/>
+  <path d="M45 127 L58 130 L51 175 L31 176Z" fill="#27364f"/><path d="M62 130 L77 126 L91 175 L71 177Z" fill="#1c2c45"/>
+  <path d="M28 172 L52 171 L54 183 L24 184Z" fill="#b18a60"/><path d="M69 172 L92 171 L99 183 L70 184Z" fill="#b18a60"/>
+  <path d="M37 38 Q38 10 62 11 Q87 12 84 45 L76 70 L43 68Z" fill="#5a392d"/>
+  <path d="M38 36 Q31 13 57 7 Q81 5 87 31 L76 27 L65 18 L54 31 L41 28Z" fill="#8b5a3d"/>
+  <ellipse cx="61" cy="42" rx="19" ry="23" fill="#f0c9a6"/><path d="M43 35 Q54 29 61 20 Q70 33 80 34 L77 22 Q60 6 43 23Z" fill="#8b5a3d"/>
+  <circle cx="54" cy="43" r="2" fill="#342b2a"/><circle cx="68" cy="43" r="2" fill="#342b2a"/><path d="M57 54 Q61 57 65 54" stroke="#9c5c54" stroke-width="1.8" fill="none"/>
+  <path d="M79 83 L101 39" stroke="#bfc9d8" stroke-width="5" stroke-linecap="round"/><path d="M101 39 L109 22" stroke="#fff1c5" stroke-width="3" stroke-linecap="round"/><path d="M75 87 L88 93" stroke="#8b5a3d" stroke-width="6" stroke-linecap="round"/>
+  <path d="M39 78 L20 106" stroke="#d9b28b" stroke-width="8" stroke-linecap="round"/>
+ </svg>
+ <svg id="wolf" class="actor wolf" viewBox="0 0 140 125" role="img" aria-label="森林狼">
+  <ellipse cx="70" cy="112" rx="48" ry="7" fill="#07121b" opacity=".6"/>
+  <path d="M27 70 Q7 55 14 31 Q31 49 42 48" fill="#6e8296" stroke="#34465c" stroke-width="3"/>
+  <path d="M35 52 Q39 28 69 29 Q99 27 111 56 L102 91 Q70 109 39 88Z" fill="#8193a6" stroke="#34465c" stroke-width="3"/>
+  <path d="M43 42 L34 8 L62 31Z" fill="#65788c" stroke="#34465c" stroke-width="3"/><path d="M88 31 L111 7 L112 47Z" fill="#65788c" stroke="#34465c" stroke-width="3"/>
+  <path d="M92 57 Q125 46 133 67 Q128 91 99 88Z" fill="#a9b6c2"/><path d="M112 68 L136 73 L115 81Z" fill="#e5b7a9"/>
+  <circle cx="91" cy="53" r="4" fill="#ffd66b"/><circle cx="92" cy="53" r="1.5" fill="#1b2430"/>
+  <path d="M49 83 L45 111 L58 111 L66 91 M83 89 L87 111 L100 111 L99 83" fill="#52677e" stroke="#34465c" stroke-width="3"/>
+ </svg>
+ <div id="slashfx" class="slashfx"></div><div id="float" class="float">-8</div>
+</section>
+<section class="panel">
+ <div class="row"><strong>冒險者經驗</strong><span id="xpText" class="muted">0 / 30 XP</span></div>
+ <div class="progress"><span id="xpBar"></span></div>
+ <div class="row" style="margin-top:10px"><span>探索狀態</span><strong id="state">自動戰鬥中</strong></div>
+ <div class="row"><span class="muted">戰鬥節奏</span><span class="muted">約每 2.2 秒出手</span></div>
+ <button id="upgrade">強化武器（花費 25 金幣）</button>
+</section>
+<section class="panel"><h3>冒險紀錄</h3><div id="log" class="log">你踏入了月光森林……</div></section>
+</div>
 <script>
-let s={level:1,gold:0,xp:0,attack:1,kills:0,last:Date.now(),started:Date.now()};
-try{const old=JSON.parse(localStorage.getItem('ij02')||'null');if(old)s={...s,...old}}catch(e){}
-const $=id=>document.getElementById(id);let enemy=72;
-function render(){ $('level').textContent='Lv. '+s.level;$('gold').textContent=s.gold;$('xp').textContent=s.xp+' / '+(s.level*100);$('xpbar').style.width=(s.xp/(s.level*100)*100)+'%';$('enemyhp').textContent='生命 '+enemy+'%';$('hpbar').style.width=enemy+'%';}
-function save(){s.last=Date.now();localStorage.setItem('ij02',JSON.stringify(s))}
-function fight(){enemy-=Math.min(18,5+s.attack*2);if(enemy<=0){s.gold+=12+s.level*2;s.xp+=20;s.kills++;enemy=100;if(s.xp>=s.level*100){s.xp-=s.level*100;s.level++;$('log').textContent='✨ 升級！旅人提升至 Lv. '+s.level;}else $('log').textContent='⚔️ 擊敗森林魔狼！獲得金幣與經驗。';}else $('log').textContent='旅人揮劍攻擊魔狼，造成 '+(5+s.attack*2)+' 點傷害。';render();save()}
-$('upgrade').onclick=()=>{if(s.gold<30){$('log').textContent='金幣不足，繼續探索即可獲得金幣。';return}s.gold-=30;s.attack++;$('log').textContent='攻擊力提升！目前攻擊等級 '+s.attack+'。';render();save()};
-$('collect').onclick=()=>{$('log').textContent='離線收益已計入目前進度。';save()};
-const elapsed=Math.max(0,Math.min(8*3600,(Date.now()-(s.last||Date.now()))/1000));if(elapsed>30){const n=Math.floor(elapsed/5);s.gold+=n*12;s.xp+=n*20;while(s.xp>=s.level*100){s.xp-=s.level*100;s.level++}$('log').textContent='歡迎回來！已結算約 '+Math.floor(elapsed/60)+' 分鐘的離線探索收益。';}
-render();setInterval(()=>{fight();let sec=Math.floor((Date.now()-s.started)/1000);$('time').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')},5000);save();
+const $=id=>document.getElementById(id);
+let data={level:1,gold:0,xp:0,atk:8,enemyHp:40,last:Date.now()};
+const need=()=>30+(data.level-1)*15;
+function log(t){$('log').innerHTML=t+'<br>'+ $('log').innerHTML}
+function save(){data.last=Date.now();localStorage.setItem('idleJourneySave',JSON.stringify(data))}
+function render(){
+ $('level').textContent='Lv. '+data.level;$('gold').textContent=data.gold;$('atk').textContent=data.atk;
+ $('xpText').textContent=data.xp+' / '+need()+' XP';$('xpBar').style.width=(data.xp/need()*100)+'%';
+ $('enemyHpText').textContent=Math.max(0,data.enemyHp)+' / 40';$('enemyHpBar').style.width=(Math.max(0,data.enemyHp)/40*100)+'%';
+}
+function effect(el,cls){el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);setTimeout(()=>el.classList.remove(cls),500)}
+function reward(){
+ data.gold+=8;data.xp+=10;
+ if(data.xp>=need()){data.xp-=need();data.level++;data.atk+=2;log('✨ 升級！現在是 Lv. '+data.level+'，攻擊力提升。')}
+}
+function attack(){
+ effect($('hero'),'attack');effect($('wolf'),'hit');effect($('slashfx'),'show');
+ data.enemyHp-=data.atk;
+ $('float').textContent='-'+data.atk;effect($('float'),'show');
+ if(data.enemyHp<=0){reward();data.enemyHp=40;log('⚔️ 擊敗森林狼！獲得 8 金幣、10 經驗。')}
+ render();save();
+}
+function enemyAttack(){effect($('hero'),'hit')}
+$('upgrade').addEventListener('click',()=>{
+ if(data.gold<25){log('金幣不足，繼續探索就能累積金幣。');return}
+ data.gold-=25;data.atk+=4;log('🗡️ 武器強化成功，攻擊力 +4！');render();save();
+});
+try{const old=JSON.parse(localStorage.getItem('idleJourneySave')||'null');if(old){data={...data,...old};const elapsed=Math.min(8*3600,Math.max(0,(Date.now()-old.last)/1000));const kills=Math.floor(elapsed/8);if(kills>0){data.gold+=kills*8;data.xp+=kills*10;log('離線期間約擊敗 '+kills+' 隻森林狼，獲得獎勵。')}data.last=Date.now()}}catch(e){}
+render();setInterval(attack,2200);setInterval(enemyAttack,4400);setInterval(save,10000);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-</script></body></html>
+</script>
+</body></html>
