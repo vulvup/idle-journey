@@ -3,8 +3,8 @@
   "short_name": "異界旅人",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#111222",
-  "theme_color": "#17172b",
-  "lang": "zh-TW",
-  "description": "Anime 風格單人背景掛機 RPG"
+  "background_color": "#101629",
+  "theme_color": "#101629",
+  "orientation": "portrait",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
